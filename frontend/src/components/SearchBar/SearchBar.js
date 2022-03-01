@@ -19,9 +19,8 @@ const SearchBar = (todo) => {
         autoFocus
         fullWidth
         multiline
-        value={(e) => getTodos(e.target)}
         onChange={(e) => {
-          console.log("qqqqqqqq");
+          console.log(e.target.value);
           dispatch(getTodos(e.target.value));
         }}
       />

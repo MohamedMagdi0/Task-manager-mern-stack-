@@ -1,13 +1,16 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const url = "http://localhost:5000";
+export const url = "http://localhost:5001";
 
 export const getTodos = (searchKeyword) => {
+  // debugger;
   return (dispatch) => {
+    // debugger;
+
     let getUrl = `${url}/tasks`;
     if (searchKeyword) {
-      getUrl += `?searchKeyword=${searchKeyword}`;
+      getUrl = `${url}/search?searchKeyword=${searchKeyword}`;
     }
     axios
       .get(`${getUrl}`)

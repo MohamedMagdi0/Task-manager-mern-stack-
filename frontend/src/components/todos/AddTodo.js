@@ -51,60 +51,58 @@ const AddTodo = ({ todo, setTodo }) => {
   };
 
   return (
-    <>
-      <form
-        style={{ display: "flex", flexDirection: "column" }}
-        noValidate
-        autoComplete="off"
-        className={classes.formStyle}
-        onSubmit={handleSubmit}
-      >
-        <div style={{ margin: "10px" }}>
-          <TextField
-            id="enter-todo"
-            label="Task Title"
-            variant="outlined"
-            autoFocus
-            fullWidth
-            value={todo.title}
-            onChange={(e) => setTodo({ ...todo, title: e.target.value })}
-          />
-        </div>
+    <form
+      style={{ display: "flex", flexDirection: "column" }}
+      noValidate
+      autoComplete="off"
+      className={classes.formStyle}
+      onSubmit={handleSubmit}
+    >
+      <div style={{ margin: "10px" }}>
+        <TextField
+          id="enter-todo"
+          label="Task Title"
+          variant="outlined"
+          autoFocus
+          fullWidth
+          value={todo.title}
+          onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+        />
+      </div>
 
-        <div className="container" style={{ margin: "10px" }}>
-          <TextField
-            id="enter-todo"
-            label="Task Description"
-            variant="outlined"
-            autoFocus
-            fullWidth
-            multiline
-            value={todo.description}
-            onChange={(e) => setTodo({ ...todo, description: e.target.value })}
-          />
-          <div
-            style={{
-              paddingTop: "10px",
-              display: "flex",
-              flexDirection: "row-reverse",
-              width: "100%",
-            }}
+      <div className="container" style={{ margin: "10px" }}>
+        <TextField
+          id="enter-todo"
+          label="Task Description"
+          variant="outlined"
+          autoFocus
+          fullWidth
+          multiline
+          value={todo.description}
+          onChange={(e) => setTodo({ ...todo, description: e.target.value })}
+        />
+        <div
+          style={{
+            paddingTop: "10px",
+            display: "flex",
+            flexDirection: "row-reverse",
+            width: "100%",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.submitButton}
+            type="submit"
           >
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.submitButton}
-              type="submit"
-            >
-              <Send />
-            </Button>
-          </div>
+            <Send />
+          </Button>
         </div>
-        <div className="container" style={{ margin: "10px" }}>
-          <SearchBar />
-        </div>
-      </form>
-    </>
+      </div>
+      <div className="container" style={{ margin: "10px" }}>
+        <SearchBar />
+      </div>
+    </form>
   );
 };
 

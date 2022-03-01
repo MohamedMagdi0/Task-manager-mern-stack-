@@ -27,20 +27,16 @@ const ListTodos = ({ todo, setTodo }) => {
   }, [todo.id, dispatch]);
 
   return (
-    <>
-      <div className={classes.todosStyle}>
-        <Typography variant="h5">
-          {" "}
-          {todos.length > 0 ? "Tasks" : "no Tasks added Yet;"}{" "}
-        </Typography>
-        {todos &&
-          todos.map((todo, id) => {
-            return (
-              <Todo todo={todo} key={id} setTodo={setTodo} todos={todos} />
-            );
-          })}
-      </div>
-    </>
+    <div className={classes.todosStyle}>
+      <Typography variant="h5">
+        {" "}
+        {todos.length > 0 ? "Tasks" : "no Tasks added Yet;"}{" "}
+      </Typography>
+      {todos &&
+        todos.map((todo, id) => {
+          return <Todo todo={todo} key={id} setTodo={setTodo} todos={todos} />;
+        })}
+    </div>
   );
 };
 

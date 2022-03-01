@@ -1,5 +1,4 @@
 const cors = require("cors");
-const todos = require("./routes/todos");
 const express = require("express");
 
 const Todo = require("./models/todo");
@@ -15,16 +14,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}...`);
 });
 
 // Get all Tasks
-app.get("/tasks/", async (req, res) => {
+app.get("/tasks", async (req, res) => {
   try {
-    // console.log(data);
     jsonUtls.loadJSON().then((data) => {
       res.send(data);
     });
@@ -68,42 +66,16 @@ app.put("/tasks/:id", async (req, res) => {
 });
 
 // Search for Task by title
-app.get("/tasks/", async (req, res) => {
-  let todoPattern = new RegExp("^" + req.body.query);
-  if (req.body.title !== todoPattern || req.body.description !== todoPattern) {
-    return res.status(500).send("Task Can not be found");
-  }
-
+app.get(`/search`, async (req, res) => {
   try {
     jsonUtls.loadJSON().then((data) => {
-      console.log(req.query.id);
-      data.find({ title: { $regex: todoPattern } }).select("");
-      // req.query.searchKeyword
-      if (req.query.searchKeyword) {
-        // search
-        // filter data
-        res.send(data.includes(searchKeyword));
-        data = [{}];
-      }
-    });
+      let filteredData = data.filter((todo) =>
+        todo.title.includes(req.query.searchKeyword)
+      );
 
-    res.send(data);
+      res.send(filteredData);
+    });
   } catch (error) {
     res.status(500).send("Error: " + error.message);
   }
-
-  // console.log(req.params);
-  // todo
-  //   .find({ title: { $regex: todoPattern } })
-  //   .select("")
-  //   .then((todo) => {
-  //     jsonUtls.loadJSON().then((data) => {
-  //       res.send(data);
-  //     });
-  //     console.log(todo);
-  //     res.json({ todo });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 });

@@ -68,13 +68,13 @@ const Todo = ({ todo, setTodo, todos }) => {
         </div>
         <div>
           <ButtonGroup size="small" aria-label="outlined primary button group">
-            <Button onClick={() => handleCheck(todo.id)}>
+            {/* <Button onClick={() => handleCheck(todo.id)}>
               {todo.isComplete ? (
                 <CheckCircle className={classes.isComplete} />
               ) : (
                 <CheckCircle color="action" />
               )}
-            </Button>
+            </Button> */}
             <Button onClick={() => handleOnUpdateClick(todo.id)}>
               <Create color="primary" />
             </Button>
